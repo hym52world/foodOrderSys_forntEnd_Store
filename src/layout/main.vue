@@ -3,11 +3,15 @@
         <!-- element 容器 -->
         <el-container class="el_container">
             <!-- element 容器header -->
-            <el-header class="header">Header</el-header>
+            <el-header class="header">
+                <Header></Header>
+            </el-header>
             <!-- header下的容器 -->
             <el-container>
                 <!-- 左侧 -->
-                <el-aside class="aside">aside</el-aside>
+                <el-aside class="aside">
+                    <Menu></Menu>
+                </el-aside>
                 <!-- 容器 -->
                 <el-container>
                     <!-- 主窗口 -->
@@ -23,6 +27,9 @@
 </template>
   
 <script setup>
+import Menu from './menu.vue'
+import Header from './header.vue'
+
 </script>
 <style scoped>
 .layout {
@@ -33,14 +40,16 @@
     width: 100vw;
 }
 .header {
-    height: 70px;
+    height: 60px;
     width: 100%;
-    background-color: #388380;
+    /* background-color: #388380; */
+    padding: 0;
 }
 .aside {
     width: 200px;
-    height: 100%;
-    background-color: #c27a7a;
+    height: calc(100vh - 60px);
+    box-sizing: border-box;
+    overflow-x: scroll;
 }
 .main {
     background-color: #439171;
