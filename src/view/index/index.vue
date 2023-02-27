@@ -1,5 +1,5 @@
 <template>
-    <div class="contained">
+    <div class="container">
         index
     </div>
 </template>

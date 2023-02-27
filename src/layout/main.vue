@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <!-- element 容器 -->
-        <el-container class="container">
+        <el-container class="el_container">
             <!-- element 容器header -->
             <el-header class="header">Header</el-header>
             <!-- header下的容器 -->
@@ -28,7 +28,7 @@
 .layout {
     height: 100vh;
 }
-.container {
+.el_container {
     height: calc(100vh);
     width: 100vw;
 }
