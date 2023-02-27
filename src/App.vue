@@ -1,9 +1,9 @@
 <script setup>
-import layout from './layout/mian.vue'
+import layout from './layout/main.vue'
 </script>
 
 <template>
-    <layout></layout>
+    <router-view></router-view>
 </template>
 
 <style scoped>

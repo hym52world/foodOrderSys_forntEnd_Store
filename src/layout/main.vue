@@ -11,7 +11,9 @@
                 <!-- 容器 -->
                 <el-container>
                     <!-- 主窗口 -->
-                    <el-main class="main">Main</el-main>
+                    <el-main class="main">
+                        <router-view></router-view>
+                    </el-main>
                     <!-- footer -->
                     <el-footer class="footer">Footer</el-footer>
                 </el-container>
