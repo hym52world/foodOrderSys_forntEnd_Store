@@ -19,6 +19,7 @@
                             <el-button @click="login()">登陆</el-button>
                         </el-form-item>
                     </el-form>
+                    <router-link to="/register" class="register">没有账号？点击注册</router-link>
                 </div>
             </div>
             <div class="right_img"></div>
@@ -112,5 +113,10 @@ function login() {
     flex: 3;
     height: 100vh;
     background-image: url(../../image/right_oip.jpg);
+}
+.register{
+    padding-top: 20px;
+    text-align: left;
+    font-size: 14px;
 }
 </style>

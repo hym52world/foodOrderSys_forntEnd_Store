@@ -5,6 +5,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes:[
         { path: '/login',component: () => import('../view/login/login.vue')  },
+        { path: '/register',component: () => import('../view/register/register.vue')  },
         {
             path: '/',
             component: dashboard,
