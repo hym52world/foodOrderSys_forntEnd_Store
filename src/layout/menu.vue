@@ -1,47 +1,28 @@
 <template>
-    <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
-        <el-sub-menu index="1">
+    <el-menu default-active="/index" router class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+        <el-menu-item index="/index">首页</el-menu-item>
+        <el-sub-menu>
             <template #title>
-                <el-icon>
-                    <location />
-                </el-icon>
-                <span>Navigator One</span>
+                <!-- <el-icon><location /></el-icon> -->
+                <span>订单管理</span>
             </template>
-            <el-menu-item-group>
-                <template #title><span>Group One</span></template>
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-                <template #title><span>item four</span></template>
+            <!-- 子菜单 -->
+            <el-menu-item index="/orderList">订单列表</el-menu-item>
+            <!-- <el-menu-item index="1-2">item two</el-menu-item> -->
+            <!-- <el-menu-item index="1-3">item three</el-menu-item> -->
+            <!-- 带有子菜单的子菜单 -->
+            <!-- <el-sub-menu index="1-4">
+                <template #title>item four</template>
                 <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
+                <el-menu-item index="1-4-2">item two</el-menu-item>
+            </el-sub-menu> -->
         </el-sub-menu>
-        <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-            <el-icon>
-                <document />
-            </el-icon>
-            <template #title>Navigator Three</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-            <el-icon>
-                <setting />
-            </el-icon>
-            <template #title>Navigator Four</template>
-        </el-menu-item>
     </el-menu>
 </template>
 <style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 100%;
+    width: 200px;
+    min-height: 100%;
 }
 </style>
 <script setup>

@@ -12,7 +12,11 @@ const router = createRouter({
                 {
                     path: 'index',
                     component: () => import('../view/index/index.vue'),
-                }
+                },
+                {
+                    path: 'orderList',
+                    component: () => import('../view/order/orderList.vue'),
+                },
             ]
         }
         // { path: '/home',component: () => import('../Vue文件')  },
