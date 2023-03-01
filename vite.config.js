@@ -9,8 +9,20 @@ import IconsResolver from 'unplugin-icons/resolver'
 
 const pathSrc = path.resolve(__dirname, 'src')
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    open: true,
+    host: 'localhost',
+    port: 8000,
+    https: false,
+    proxy:{
+      "/api":{
+        changeOrigin: true,
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': pathSrc,
