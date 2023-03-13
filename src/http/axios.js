@@ -16,7 +16,7 @@ const axios = ({
 }) => {
     method = method.toLowerCase();
     if (method == 'post') {
-        return instance.post(url, data, {...config})
+        return instance.post(url, data, { ...config })
     } else if (method == 'get') {
         return instance.get(url, {
             params: data,
@@ -26,9 +26,9 @@ const axios = ({
         return instance.delete(url, {
             params: data,
             ...config
-        }, )
+        },)
     } else if (method == 'put') {
-        return instance.put(url, data,{...config})
+        return instance.put(url, data, { ...config })
     } else {
         console.error('未知的method' + method)
         return false

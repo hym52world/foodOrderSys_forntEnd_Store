@@ -1,7 +1,7 @@
 import axios from "@/http/axios.js"
 //请求示例
 //get
-export const tenantlogin = (data) => {
+export const tenantLogin = (data) => {
     return axios({
         url: "/tenant/login",
         method: "post",
