@@ -6,7 +6,7 @@ import {
 } from 'element-plus';
 //创建axios的一个实例 
 var instance = axios.create({
-    baseURL: 'http://supman.fun:3000', //接口统一域名
+    baseURL: 'http://localhost:3000/web', //接口统一域名
     timeout: 6000, //设置超时
     headers: {
         'Content-Type': 'application/json',
@@ -38,10 +38,12 @@ const hideLoading = () => {
 instance.interceptors.request.use((config) => {
     showLoading()
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
-    const token = window.localStorage.getItem('token');
-    if (token == undefined || token == null) {
-        window.localStorage.removeItem('token');
+    const token = 'Bearer ' + window.localStorage.getItem('token');
+    if (window.localStorage.getItem('token') == undefined || window.localStorage.getItem('token') == null) {
+        window.localStorage.getItem('token');
     }
+
+    // token存在 使用这个语句将token设置到header中
     token && (config.headers.Authorization = token)
     //若请求方式为post，则将data参数转为JSON字符串
     if (config.method === 'POST') {

@@ -1,27 +1,17 @@
 <template>
   <div class="container">
-    <!-- login{{ formList }}
-        <el-button @click="login()">登陆</el-button> -->
     <div class="login" v-loading="loading">
       <div class="left">
         <div class="login_form">
           <div class="logo"></div>
           <div class="title">登陆</div>
           <div class="subtitle">请使用注册的手机号密码进行登录</div>
-          <el-form class="form" model="formList" ref="loginForm" label-width="100px">
+          <el-form class="form" v-model="formList" ref="loginForm" label-width="100px">
             <el-form-item prop="tenantPhone" label="手机号">
-              <el-input
-                v-model="formList.tenantPhone"
-                placeholder="请输入手机号"
-              ></el-input>
+              <el-input v-model="formList.tenantPhone" placeholder="请输入手机号"></el-input>
             </el-form-item>
             <el-form-item prop="tenantPassword" label="密码">
-              <el-input
-                v-model="formList.tenantPassword"
-                type="password"
-                placeholder="请输入密码"
-                show-password
-              ></el-input>
+              <el-input v-model="formList.tenantPassword" type="password" placeholder="请输入密码" show-password></el-input>
             </el-form-item>
             <el-form-item>
               <el-button @click="login()">登陆</el-button>
@@ -36,8 +26,14 @@
 </template>
 
 <script setup>
-import { tenantLogin } from "@/api/tenant.js";
+import { api_login, api_getTenantInfo } from "@/api/tenant.js";
 import { useRouter } from "vue-router";
+import { storeToRefs } from 'pinia'
+import { store_tenant } from '@/store/tenant.ts'
+const store = store_tenant()
+
+const { tenantInfo } = storeToRefs(store)
+
 
 const formList = ref({
   tenantPhone: "17698789517",
@@ -46,9 +42,10 @@ const formList = ref({
 const loading = ref(false);
 const router = useRouter();
 
+// 租户登录token
 function login() {
   this.loading = true;
-  tenantLogin({
+  api_login({
     ...this.formList,
   }).then((res) => {
     if (res.code == 200) {
@@ -56,15 +53,26 @@ function login() {
         message: "登陆成功！",
         type: "success",
       });
-      console.log(res.token);
+      // 获取租户信息
+      this.getTenantInfo()
       window.localStorage.setItem("token", res.data.token);
-      this.formList = res;
       router.push({
         path: "/index",
       });
     }
   });
   this.loading = false;
+}
+// 获取租户信息
+function getTenantInfo() {
+  api_getTenantInfo({
+    token: window.localStorage.getItem("token"),
+  }).then((res) => {
+    if (res.code == 200) {
+      this.tenantInfo = res.data.tenant
+      console.log(this.tenantInfo);
+    }
+  });
 }
 </script>
 
@@ -77,6 +85,7 @@ function login() {
   /* justify-content: center; */
   color: black;
 }
+
 .left {
   flex: 6;
   display: flex;
@@ -84,6 +93,7 @@ function login() {
   justify-content: center;
   background-image: url(../../image/OIP.jpeg);
 }
+
 .login_form {
   width: 500px;
   height: 500px;
@@ -95,17 +105,20 @@ function login() {
   flex-direction: column;
   /* align-items: center; */
 }
+
 .logo {
   background-color: #d2a4a4;
   width: 100px;
   height: 40px;
 }
+
 .title {
   width: 100%;
   padding-top: 30px;
   text-align: left;
   font-size: 25px;
 }
+
 .subtitle {
   width: 100%;
   padding-top: 10px;
@@ -113,15 +126,18 @@ function login() {
   font-size: 14px;
   font-weight: 200;
 }
+
 .form {
   padding-top: 40px;
   width: 400px;
 }
+
 .right_img {
   flex: 3;
   height: 100vh;
   background-image: url(../../image/right_oip.jpg);
 }
+
 .register {
   padding-top: 20px;
   text-align: left;
