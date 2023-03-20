@@ -1,14 +1,22 @@
 <template>
     <el-menu default-active="/index" router class="el-menu-vertical-demo" :collapse="props.isCollapse" @open="handleOpen()"
-        @close="handleClose()">
-        <el-menu-item index="/index" router="/index">首页</el-menu-item>
+        @close="handleClose()" unique-opened>
+        <el-menu-item index="/index" key="/index">首页</el-menu-item>
         <el-sub-menu>
             <template #title>
                 <!-- <el-icon><location /></el-icon> -->
                 <span>订单管理</span>
             </template>
             <!-- 子菜单 -->
-            <el-menu-item index="/orderList" route="/orderList">订单列表</el-menu-item>
+            <el-menu-item index="/orderList" key="/orderList">订单列表</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu>
+            <template #title>
+                <!-- <el-icon><location /></el-icon> -->
+                <span>餐位管理</span>
+            </template>
+            <!-- 子菜单 -->
+            <el-menu-item index="/seatList" key="/seatList">餐位列表</el-menu-item>
         </el-sub-menu>
     </el-menu>
 </template>
