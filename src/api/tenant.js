@@ -6,9 +6,6 @@ export const api_login = (data) => {
         url: "/tenant/login",
         method: "post",
         data,
-        config: {
-            timeout: 10000
-        }
     })
 }
 
@@ -18,8 +15,13 @@ export const api_getTenantInfo = (data) => {
         url: "/tenant/info",
         method: "post",
         data,
-        config: {
-            timeout: 10000
-        }
+    })
+}
+
+// 租户退出登录
+export const api_logout = () => {
+    return axios({
+        url: "/tenant/logout",
+        method: "post",
     })
 }

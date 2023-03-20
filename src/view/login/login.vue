@@ -49,19 +49,11 @@ function login() {
     ...this.formList,
   }).then((res) => {
     if (res.code == 200) {
-      ElMessage({
-        message: "登陆成功！",
-        type: "success",
-      });
+      window.localStorage.setItem("token", res.data.token);
       // 获取租户信息
       this.getTenantInfo()
-      window.localStorage.setItem("token", res.data.token);
-      router.push({
-        path: "/index",
-      });
     }
   });
-  this.loading = false;
 }
 // 获取租户信息
 function getTenantInfo() {
@@ -70,7 +62,18 @@ function getTenantInfo() {
   }).then((res) => {
     if (res.code == 200) {
       this.tenantInfo = res.data.tenant
-      console.log(this.tenantInfo);
+      window.sessionStorage.setItem("tenantInfo", JSON.stringify(this.tenantInfo));
+      // 跳转首页增加500ms延迟
+      setTimeout(() => {
+        this.loading = false;
+        router.push({
+          path: "/index",
+        });
+        ElMessage({
+          message: "登陆成功！",
+          type: "success",
+        });
+      }, 500);
     }
   });
 }

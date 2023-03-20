@@ -34,6 +34,7 @@ const isCollapse = ref(false)
 <style scoped>
 .layout {
     height: 100vh;
+    color: black;
 }
 
 .el_container {
@@ -44,24 +45,30 @@ const isCollapse = ref(false)
 .header {
     height: 60px;
     width: 100%;
-    /* background-color: #388380; */
-    padding: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #DCDFE6;
 }
 
 .aside {
+    border-top: 1px solid #DCDFE6;
     width: 200px;
     height: calc(100vh - 60px);
     box-sizing: border-box;
-    overflow-x: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .main {
-    background-color: #439171;
+    border-top: 1px solid #DCDFE6;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
 .footer {
     height: 30px;
     width: 100%;
-    background-color: #453b3b;
+    background-color: #fff;
+    padding: 0;
+    border-top: 1px solid #DCDFE6;
 }
 </style>
