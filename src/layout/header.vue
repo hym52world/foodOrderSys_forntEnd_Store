@@ -25,11 +25,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { api_logout } from '@/api/tenant'
+import { ref, reactive } from 'vue'
+import { api_logout, api_getTenantInfo } from '@/api/tenant'
 import { useRouter } from "vue-router";
-const tenantInfo = ref(JSON.parse(window.sessionStorage.getItem('tenantInfo')))
 const router = useRouter();
+
+const tenantInfo = reactive({})
+
+getTenantInfo()
 
 // 退出登录
 function logout() {
@@ -49,6 +52,20 @@ function logout() {
     }
   });
 
+}
+
+// 获取租户信息
+function getTenantInfo() {
+  api_getTenantInfo({
+    token: window.localStorage.getItem("token"),
+  }).then((res) => {
+    if (res.code == 200) {
+      // tenantInfo = res.data.tenant
+      Object.assign(tenantInfo, res.data.tenant)
+      window.sessionStorage.setItem("tenantInfo", JSON.stringify(tenantInfo));
+      // console.log(this.tenantInfo);
+    }
+  });
 }
 </script>
 
