@@ -31,6 +31,7 @@ import { api_addMealSeats } from '@/api/seat.js'
 import { reactive } from 'vue'
 import { defineEmits } from 'vue'
 
+// 调用父组件事件
 const emit = defineEmits(['close'])
 
 const formList = reactive({
@@ -40,7 +41,7 @@ const formList = reactive({
     mealSeatsIsRoom: '0',
     mealSeatsMaxPersons: '',
 })
-
+// 提交
 const onSubmit = () => {
     console.log('submit!')
     api_addMealSeats({
@@ -51,16 +52,18 @@ const onSubmit = () => {
                 message: "新增成功！",
                 type: "success",
             });
+            emit('close')
+            // 重置表单
+            Object.assign(formList, {
+                mealSeatsNumber: '',
+                mealSeatsFloor: '',
+                mealSeatsAddress: '',
+                mealSeatsIsRoom: '0',
+                mealSeatsMaxPersons: '',
+            })
         }
     });
-    emit('close')
-    Object.assign(formList, {
-        mealSeatsNumber: '',
-        mealSeatsFloor: '',
-        mealSeatsAddress: '',
-        mealSeatsIsRoom: '0',
-        mealSeatsMaxPersons: '',
-    })
+
 }
 
 

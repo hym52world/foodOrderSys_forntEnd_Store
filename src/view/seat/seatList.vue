@@ -48,7 +48,7 @@
         <!-- 分页 -->
         <div class="pagination">
             <el-pagination v-model:current-page="pageParams.currentPage" v-model:page-size="pageParams.pageSize"
-                :page-sizes="[10, 20, 30, 40]" :total="total" background layout="sizes, prev, pager, next"
+                :page-sizes="[10, 20, 30, 40]" :total="total" background layout="sizes, prev, pager, next, total"
                 @current-change="handleCurrentChange" @size-change="handleSizeChange" hide-on-single-page />
         </div>
 

@@ -67,7 +67,14 @@ instance.interceptors.response.use(
     hideLoading();
     //响应成功
     console.log("拦截器报错");
-    return response.data;
+    // 自定义错误 不是网络请求报错
+    if (response.data.code != 200) {
+      console.log("response.data.code != 200");
+      ElMessage.error(response.data.message);
+      return Promise.reject(response.data);
+    } else {
+      return response.data;
+    }
   },
   (error) => {
     console.log(error);
